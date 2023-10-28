@@ -7,7 +7,7 @@ app = Flask(__name__)
 def get_vitesse():
     vitesse = request.args.get("vitesse")
     if vitesse is not None:
-        with open("vitesse.txt", "w") as f:
+        with open("speed.txt", "w") as f:
             f.write(vitesse)
         return "Vitesse saved to file."
 

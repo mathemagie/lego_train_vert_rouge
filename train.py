@@ -2,17 +2,15 @@ from curio import sleep
 from bricknil import attach, start
 from bricknil.hub import PoweredUpHub
 from bricknil.sensor import TrainMotor
-from bricknil.process import Process
 import logging
-
-# import pusher
-
-
-file_vitesse = "vitesse.txt"
 
 
 @attach(TrainMotor, name="motor")
 class Train(PoweredUpHub):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.file_vitesse = "speed.txt"
+
     async def run(self):
         start_vitesse = 0
 
@@ -20,9 +18,9 @@ class Train(PoweredUpHub):
 
         while True:
             try:
-                vitesse_f = open(file_vitesse, "r")
-                vitesse = int(vitesse_f.read())
-                self.message_info(vitesse)
+                with open(self.file_vitesse, "r") as f:
+                    vitesse = int(f.read())
+                self.message_info("vitesse {}".format(vitesse))
                 if vitesse != start_vitesse:
                     self.message_info("change speed")
                     start_vitesse = vitesse
@@ -33,8 +31,7 @@ class Train(PoweredUpHub):
 
 
 async def system():
-    train = Train("My train")
-    # train.goto()
+    Train("My train")
 
 
 if __name__ == "__main__":
