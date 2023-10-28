@@ -26,7 +26,8 @@ class Train(PoweredUpHub):
                     start_vitesse = vitesse
                     await self.motor.set_speed(vitesse)
                 await sleep(0.1)
-            except:
+            except Exception as e:
+                logging.error(f"Error: {e}")
                 pass
 
 
