@@ -3,7 +3,7 @@ from flask import Flask, send_file, request
 app = Flask(__name__)
 
 
-@app.route("/vitesse", methods=["GET"])
+@app.route("/api_train", methods=["GET"])
 def get_vitesse():
     vitesse = request.args.get("vitesse")
     if vitesse is not None:

@@ -57,12 +57,12 @@
             labelContainer.childNodes[i].innerHTML = classPrediction;
             //console.log(prediction[i].className, prediction[i].probability.toFixed(2));
             if (prediction[i].className == "Class 2" && prediction[i].probability.toFixed(2) > 0.95) {
-                $.get( "/vitesse?vitesse=" + 0 , function( data ) {
+                $.get( "/api_train?vitesse=" + 0 , function( data ) {
                     console.log(0);
                 });
             }
             if (prediction[i].className == "Class 1" && prediction[i].probability.toFixed(2) > 0.95) {
-                $.get( "/vitesse?vitesse=" + 50 , function( data ) {
+                $.get( "/api_train?vitesse=" + 50 , function( data ) {
                     console.log(50);
                 });
             }
