@@ -8,10 +8,22 @@ import logging
 @attach(TrainMotor, name="motor")
 class Train(PoweredUpHub):
     def __init__(self, *args, **kwargs):
+        """
+        Initialize the Train object.
+
+        Args:
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
         super().__init__(*args, **kwargs)
         self.file_vitesse = "speed.txt"
 
     async def run(self):
+        """
+        Run the train.
+
+        Reads the speed from a file and sets the motor speed accordingly.
+        """
         start_vitesse = 0
 
         self.message_info("Running")
